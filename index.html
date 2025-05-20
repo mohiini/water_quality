@@ -119,7 +119,6 @@
             const chloramines = parseFloat(document.querySelector('input[name="chloramines"]').value);
             const sulfate = parseFloat(document.querySelector('input[name="sulfate"]').value);
 
-            // Dummy logic — replace with your actual logic
             let resultText = "Water Quality: ";
             if (6.5 <= ph <= 8.5 && hardness < 300 && solids < 10000 && chloramines < 5 && sulfate < 250) {
                 resultText += "✅ Safe";
