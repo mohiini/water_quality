@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Water Quality Classifier</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #d0f0fd, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #006064;
+            margin-bottom: 20px;
+        }
+
+        .water-image {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: 600;
+            text-align: left;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #0097a7;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #007c91;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-left: 5px solid #00796b;
+            border-radius: 8px;
+            font-size: 18px;
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💧 Water Quality Classifier</h1>
+
+        <form id="qualityForm">
+            <label for="ph">pH:</label>
+            <input type="number" step="0.01" name="ph" required>
+
+            <label for="hardness">Hardness:</label>
+            <input type="number" step="0.1" name="hardness" required>
+
+            <label for="solids">Solids:</label>
+            <input type="number" step="0.1" name="solids" required>
+
+            <label for="chloramines">Chloramines:</label>
+            <input type="number" step="0.1" name="chloramines" required>
+
+            <label for="sulfate">Sulfate:</label>
+            <input type="number" step="0.1" name="sulfate" required>
+
+            <button type="submit">Check Quality</button>
+        </form>
+
+        <div class="result" id="resultBox" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById("qualityForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const ph = parseFloat(document.querySelector('input[name="ph"]').value);
+            const hardness = parseFloat(document.querySelector('input[name="hardness"]').value);
+            const solids = parseFloat(document.querySelector('input[name="solids"]').value);
+            const chloramines = parseFloat(document.querySelector('input[name="chloramines"]').value);
+            const sulfate = parseFloat(document.querySelector('input[name="sulfate"]').value);
+
+            // Dummy logic — replace with your actual logic
+            let resultText = "Water Quality: ";
+            if (6.5 <= ph <= 8.5 && hardness < 300 && solids < 10000 && chloramines < 5 && sulfate < 250) {
+                resultText += "✅ Safe";
+            } else {
+                resultText += "⚠️ Potentially Unsafe";
+            }
+
+            const resultBox = document.getElementById("resultBox");
+            resultBox.innerText = resultText;
+            resultBox.style.display = "block";
+        });
+    </script>
+</body>
+</html>
